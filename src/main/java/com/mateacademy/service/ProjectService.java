@@ -1,22 +1,22 @@
 package com.mateacademy.service;
 
-import com.mateacademy.table.Developer;
+import com.mateacademy.table.Project;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ProjectService  implements Service<Developer> {
+public class ProjectService implements Service<Project> {
     private EntityManager entityManager =
             Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
 
     @Override
-    public Developer add(Developer developer) {
+    public Project add(Project project) {
         entityManager.getTransaction().begin();
-        Developer developerDB = entityManager.merge(developer);
+        Project projectDB = entityManager.merge(project);
         entityManager.getTransaction().commit();
-        return developerDB;
+        return projectDB;
     }
 
     @Override
@@ -27,20 +27,20 @@ public class ProjectService  implements Service<Developer> {
     }
 
     @Override
-    public Developer get(Long id) {
-        return entityManager.find(Developer.class, id);
+    public Project get(Long id) {
+        return entityManager.find(Project.class, id);
     }
 
     @Override
-    public void update(Developer developer) {
+    public void update(Project project) {
         entityManager.getTransaction().begin();
-        entityManager.merge(developer);
+        entityManager.merge(project);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<Developer> getAll() {
-        TypedQuery<Developer> namedQuery = entityManager.createNamedQuery("Developer.getAll", Developer.class);
+    public List<Project> getAll() {
+        TypedQuery<Project> namedQuery = entityManager.createNamedQuery("Developer.getAll", Project.class);
         return namedQuery.getResultList();
     }
 }

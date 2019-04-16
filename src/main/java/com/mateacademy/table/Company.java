@@ -12,8 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(MyListener.class)
-@javax.persistence.Table(name = "company")
-public class Company extends Table{
+@Table(name = "company")
+public class Company extends TableX {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

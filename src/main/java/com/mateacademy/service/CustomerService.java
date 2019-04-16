@@ -1,5 +1,6 @@
 package com.mateacademy.service;
 
+import com.mateacademy.table.Customer;
 import com.mateacademy.table.Developer;
 
 import javax.persistence.EntityManager;
@@ -7,16 +8,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class CustomerService  implements Service<Developer> {
+public class CustomerService implements Service<Customer> {
     private EntityManager entityManager =
             Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
 
     @Override
-    public Developer add(Developer developer) {
+    public Customer add(Customer customer) {
         entityManager.getTransaction().begin();
-        Developer developerDB = entityManager.merge(developer);
+        Customer customerDB = entityManager.merge(customer);
         entityManager.getTransaction().commit();
-        return developerDB;
+        return customerDB;
     }
 
     @Override
@@ -27,20 +28,20 @@ public class CustomerService  implements Service<Developer> {
     }
 
     @Override
-    public Developer get(Long id) {
-        return entityManager.find(Developer.class, id);
+    public Customer get(Long id) {
+        return entityManager.find(Customer.class, id);
     }
 
     @Override
-    public void update(Developer developer) {
+    public void update(Customer customer) {
         entityManager.getTransaction().begin();
-        entityManager.merge(developer);
+        entityManager.merge(customer);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<Developer> getAll() {
-        TypedQuery<Developer> namedQuery = entityManager.createNamedQuery("Developer.getAll", Developer.class);
+    public List<Customer> getAll() {
+        TypedQuery<Customer> namedQuery = entityManager.createNamedQuery("Developer.getAll", Customer.class);
         return namedQuery.getResultList();
     }
 }

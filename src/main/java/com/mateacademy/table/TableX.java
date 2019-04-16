@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class Table {
+public abstract class TableX {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

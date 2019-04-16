@@ -1,10 +1,10 @@
 package com.mateacademy.service;
 
-import com.mateacademy.table.Table;
+import com.mateacademy.table.TableX;
 
 import java.util.List;
 
-public interface Service<T extends Table>{
+public interface Service<T extends TableX>{
 
     T add(T t);
 

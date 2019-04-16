@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EntityListeners(MyListener.class)
 @javax.persistence.Table(name = "skill")
-public class Skill extends Table{
+public class Skill extends TableX {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

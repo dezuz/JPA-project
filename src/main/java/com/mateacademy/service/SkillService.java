@@ -1,22 +1,22 @@
 package com.mateacademy.service;
 
-import com.mateacademy.table.Developer;
+import com.mateacademy.table.Skill;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class SkillService  implements Service<Developer> {
+public class SkillService implements Service<Skill> {
     private EntityManager entityManager =
             Persistence.createEntityManagerFactory("COLIBRI").createEntityManager();
 
     @Override
-    public Developer add(Developer developer) {
+    public Skill add(Skill skill) {
         entityManager.getTransaction().begin();
-        Developer developerDB = entityManager.merge(developer);
+        Skill skillDB = entityManager.merge(skill);
         entityManager.getTransaction().commit();
-        return developerDB;
+        return skillDB;
     }
 
     @Override
@@ -27,20 +27,20 @@ public class SkillService  implements Service<Developer> {
     }
 
     @Override
-    public Developer get(Long id) {
-        return entityManager.find(Developer.class, id);
+    public Skill get(Long id) {
+        return entityManager.find(Skill.class, id);
     }
 
     @Override
-    public void update(Developer developer) {
+    public void update(Skill skill) {
         entityManager.getTransaction().begin();
-        entityManager.merge(developer);
+        entityManager.merge(skill);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<Developer> getAll() {
-        TypedQuery<Developer> namedQuery = entityManager.createNamedQuery("Developer.getAll", Developer.class);
+    public List<Skill> getAll() {
+        TypedQuery<Skill> namedQuery = entityManager.createNamedQuery("Developer.getAll", Skill.class);
         return namedQuery.getResultList();
     }
 }
